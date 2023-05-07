@@ -1,0 +1,14 @@
+# gitlab-runner centos
+curl -LJO "https://gitlab-runner-downloads.s3.amazonaws.com/latest/rpm/gitlab-runner_amd64.rpm"
+
+# install
+rpm -i gitlab-runner_amd64.rpm
+
+
+# gitlab-runner image
+docker save python:3.7.7-slim-apt > python_3.7.7_slim_apt.tar
+split -d -a 1 -b 40MB python_3.7.7_slim_apt.tar python_3.7.7_slim_apt_part_
+
+git add python_3.7.7_slim_apt_part_0 python_3.7.7_slim_apt_part_1
+git commit -m "python3.7.7"
+git push origin day2
